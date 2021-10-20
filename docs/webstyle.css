@@ -1,14 +1,19 @@
 
 body {
-background-color: BurlyWood;
+background-color: #daedf1;
 color: indigo;
 font-family: arial, helvetica, sans-serif;
+margin-top: 40px;
+margin-left: 60px;
+margin-right: 60px;
+margin-bottom: 40px;
 }
 ol {list-style-type: lower-alpha;
-padding: 5em;
-    
+padding: 5em;  
 }
 
+h1 {color:#fff }
+img#Avatar { width:500px; height:500px; margin:0px 25px 0px 0px;}
 /*  ebb: These are CSS comments! The following rules style the "picture frame" HTML elements 
  * and help control image size in a way that scales. We made the figure element be 30% of the width of the page.
  * Then we controlled the width of the image **inside** the picture frame of the <figure>: it's allowed to fill 100% of the figure element, but can't get larger than 300 pixels.
