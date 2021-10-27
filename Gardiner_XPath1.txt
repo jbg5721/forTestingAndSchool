@@ -1,0 +1,75 @@
+
+Joey Gardiner
+
+XPath Exercise 1
+
+
+01. This Site Index file organizes lists of proper names of various kinds. Take a look at the outline view of the document before you begin to familiarize yourself with the   structure of this file, and then work with XPath to answer the following:
+
+a.  What XPath expression helps you to see all of the <div> elements in the document? (How many are there?)
+
+		- There are 9 div elements. Use //div to view all the div elements. 
+
+b.  Lists of persons are coded in <listPerson> elements. What XPath expression shows you all the <listPerson> elements in the document?
+
+		- Using //listPerson I found that there are 6 items
+
+c.  What XPath expression shows you which <div> elements contain child <listPerson> elements? (Use a predicate filter with square brackets [ ] to help you.) How many <div>   elements contain <listPerson> elements inside?
+		
+		- Using //div[listPerson] I found 4 div elements containing listPerson.
+
+d.  How can you change your XPath expression to return <div> elements that contain <listPlace> elements inside?
+
+		- I could change it slightly by going //div/listPerson this comes out with 6 results. I also tried using this path //div/listPerson//* this got a whopping 17910 results, not completely sure what went wrong here, or what I am not quite understanding. 
+
+e.  Now, write an XPath to return all the <place> children of the <listPlace> elements. How many are there?
+
+		- I tried the path //listPerson/person//* and got 16687 results.
+
+f.  What is the difference between these two XPath expressions?
+  //place/placeName
+  //place//placeName
+  Enter the two and inspect the results. Why does the second expression return a larger number of results than the first?
+
+		- The first Xpath is searching for a parent and then the child, while the second xpath is searching for a parent and then another parent. It will find everything in the parent element but with the child it will stop searching there. 
+
+
+02. When exploring a document with XPath, sometimes we are trying to find out what elements have a certain value or property. If we want to return an element in a certain   position without knowing its name, we can just designate any element with element() or *. So, for example, //* returns all 32,711 elements in this document. (Try it and   see.) Using this information, answer the following:
+
+a.  What XPath shows you all of the immediate children (whatever they are) of <div> elements?
+
+		- //body/div/* is what I used to find every immediate child of div elements.
+
+b.  There is a list of animals in this document coded in <list sortKey="animals">. How can you return all the child elements of this particular list to each of the animals?   (How many are there?)
+
+		- I tried //list/@sortKey="animals" and well it worked but I only got one item. This item was just telling me that this Xpath is true. I also tried //list[@sortKey="animals"] but did not get the correct results. Finally using //list[@sortKey="animals"]/count(item) I revieced a number, this being 29.
+
+c.  Write a single XPath expression that returns all the different elements that hold a @sortKey attribute. (Our answer uses a predicate filter [ ].)
+
+		- I started off simple with //@sortkey and this just gives you all the attributes that sortkey has throughout the document. I had to look around deeper but I came to using this XPath //*[@sortKey]. This gave me 19 elements that have the sortKey attribute in it. 
+
+03. This set of questions explores the <person> elements in the file.
+
+a.  First, write an XPath expression that returns all the <person> elements. How many are there?
+
+		- Using just //person I get 1223 results.
+
+b.  Are all of the <person> elements coded with an @sex attribute? Use a predicate filter with [ ] to find out and record your expression here. How many results do you see?
+
+		- Using //person[@sex] the search is narrowed to 1107 results. 
+
+c.  Apply a count() function to your previous expressions to return just a number in the XPath window
+
+		- Using count(//person[@sex]) the search comes as just a number, same number 1107.
+
+d.  XPath can work like a calculator: It can handle simple arithmetic operations like add, subtract, multiply (with an *) , and divide (with the word div). Try writing an   expression that returns the count() of person elements coded with @sex attributes divided by the count() of all the person elements. Multiply that by 100 to see a   percentage: About what percentage of person elements are coded with @sex attributes in this document?
+
+		- Using count(//person[@sex]) div count(//person) * 100 I get an answer of 90.52%. That is pretty neat!
+
+e.  Write an XPath expression to find the number of <person> elements coded as female with @sex="f".
+
+		- Using //person[@sex="f"] or count(//person[@sex="f"]) I get a number of 327 person elements that are coded as female. The first XPath gives you each    		  element.
+
+f.  Use the count() function and division in XPath once again to find out the proportion of persons coded female among all the persons coded with @sex attributes.
+
+		- Using count(//person[@sex="f"]) div count(//person[@sex]) * 100 I could find out that 29.54% of all persons coded with @sex are coded with female. I believe that since this involves people you typically would round to just 29%. 
