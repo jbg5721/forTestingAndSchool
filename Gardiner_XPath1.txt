@@ -1,4 +1,6 @@
 
+<----- UPDATED ----->
+
 Joey Gardiner
 
 XPath Exercise 1
@@ -21,10 +23,12 @@ c.  What XPath expression shows you which <div> elements contain child <listPers
 d.  How can you change your XPath expression to return <div> elements that contain <listPlace> elements inside?
 
 		- I could change it slightly by going //div/listPerson this comes out with 6 results. I also tried using this path //div/listPerson//* this got a whopping 17910 results, not completely sure what went wrong here, or what I am not quite understanding. 
+	NEW ANSWER - Well for one I miss read the question, I should be looking for listPlace not listPerson. I can use //div/listPlace this gives 2 results, but when you look at the XPath location you see see that the two listPlace locations are in the same div. 
 
 e.  Now, write an XPath to return all the <place> children of the <listPlace> elements. How many are there?
 
 		- I tried the path //listPerson/person//* and got 16687 results.
+	NEW ANSWER - Again I miss read, I also didn't understand the //*, so the answer can be //listPlace/element() with 204 results.
 
 f.  What is the difference between these two XPath expressions?
   //place/placeName
@@ -68,7 +72,7 @@ d.  XPath can work like a calculator: It can handle simple arithmetic operations
 
 e.  Write an XPath expression to find the number of <person> elements coded as female with @sex="f".
 
-		- Using //person[@sex="f"] or count(//person[@sex="f"]) I get a number of 327 person elements that are coded as female. The first XPath gives you each    		  element.
+		- Using //person[@sex="f"] or count(//person[@sex="f"]) I get a number of 327 person elements that are coded as female. The first XPath gives you each element.
 
 f.  Use the count() function and division in XPath once again to find out the proportion of persons coded female among all the persons coded with @sex attributes.
 
