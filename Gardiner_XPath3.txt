@@ -1,0 +1,74 @@
+
+Joey Gardiner
+
+XPath exercise 3
+
+01. Let’s start by exploring the sd elements. These contain the stage directions.
+
+	a. Write an XPath to return a count of all the sd elements in the document.
+
+		- count(//sd) tells me there are 524 sd elements.
+
+	b. What XPath expression returns all the stage directions that contain the word (or partial word) "Russian"? How many are there?
+
+		- //sd[contains(string(), "Russian")] finds 11 times Russian is mentioned in <sd>.
+
+	c. There is usually a pretty important stage direction after a scene change. Each scene is contained in a Scene element, and in each Scene the first element child is a Heading element. How can you reliably find the first stage direction immediately following that Heading element? (Hints: Take this in stages: First look for all of the Heading elements. Notice how the first sd element is positioned in relation to a Heading element: they are children of the same parent. Our solution uses the following-sibling:: axis and a numerical position predicate to indicate the first in a sequence.)
+
+		- //Heading//following-sibling::sd[1]
+
+	d. Of these these stage directions that come immediately following Heading elements, we are interested in the ones that feature computers in the scene. How can you find out which ones contain the string "computer"? (Hint: add a predicate).
+
+		- //Heading//following-sibling::sd[1][contains(string(), "computer")] finds 7 results. 
+
+	e. Some unusual scenes in the Goldeneye script contain no stage directions at all. Write an XPath expression to isolate any Scene elements without sd elements inside. How many of these scenes are there? (Hint: use a predicate with the not() function.)
+
+		- //Scene[not(sd)] There are two of these scenes, scene 32 and scene 137.
+
+02. This set of questions explores what you can find out with the XPath string() function, which pulls text strings out of XML nodes, and the string-length() function, which measures the number of text characters in the XML node that you visit.
+
+	a. This time, let’s work with the speeches in the screenplay, coded in sp elements. Write an XPath to locate all of the speeches (and notice how they are coded with a spk element inside). Now, use the simple map ! operator to apply the string() function to each sp element one by one. How is this return with string() different from just returning the sp elements? (Respond with your XPath expression, and a brief explanation of what you are seeing in the return window: How did the string() function change your results?)
+
+		- //sp! string() When using just //sp you get the entire element with everything inside. With //sp! string() you get the text inside <spk> as well as the other text.
+
+	b. Change the previous XPath expression to remove the string() function, and instead, step to the text() node child of sp. How does this change the results in the return window? (Note: text() is a node in the XML tree, so this is not a function, but a path step from parent to child. Tecnically, text() is a child of the parent element.)
+
+		- //sp/text() or //sp! text() you only see the text in <sp> you do not get the text inside <spk>
+
+	c. Now that we have isolated the speeches in the screenplay, write an XPath expression that returns their string-length(). What does this return?
+
+		- //sp/text() ! string-length() it gives 649 results and it is a list of numbers. 
+
+	d. Send those results to the max() function to find out the longest length of a stage direction in the Goldeneye script.
+
+		- //sd ! text() ! string-length() => max() gave me a result of the longest length being 842.
+		- //sp ! text() ! string-length() => max() gave me a longest length of 462. 
+
+	e. The string-length() and max() functions took us off the XML tree to yield calculated results. How can we write XPath to return the XML element sp that has the maximum string-length()? Hint: Try searching for sp elements with a predicate that checks to see if the string-length() is equal to the maximum string-length you found in the previous step.
+
+		- //sp ! text()[string-length() eq 462]
+		- //sd ! text()[string-length() eq 842]
+
+03. Now we will turn our attention to the spk elements, to return information about the speakers.
+
+	a. Notice how spk elements are nested as children inside the sp elements. Write an XPath expression to return all the speakers who deliver speeches that contain the word "Iraq". (Hint: Try breaking this down: first return all of the speeches that contain "Iraq" and then take a step to return the spk element.
+
+		- //sp[contains(string(), "Iraq")]/spk
+
+	b. All the spk elements are entered in block caps. Use the XPath lower-case() function to return all the spk elements lower-cased instead and record your expression. Hint: For this special function, you will need to refer to the self:: node using the dot like this: lower-case(.)
+
+		- //sp[contains(string(), "Iraq")]/spk => lower-case() gave me <spk> element but in lower case. 
+
+	c. We don’t really want to make the speakers names all lower-case. We just want to lower-case the letters after the first one, to change BOND to Bond. We can do that kind of string-surgery in XPath by working with substrings. Consult this page to learn about the XPath substring() function and see how to write it out. Now, see if you can apply the substring() function to isolate the 2nd letter onward in the spk elements. Then, lower-case() that substring!
+
+		- substring(//sp[contains(string(), "Iraq")]/spk,2, 4) => lower-case() This did not get the B, it left out the B.
+		- substring(//sp[contains(string(), "Iraq")]/spk,1, 1), substring(//sp[contains(string(), "Iraq")]/spk,2, 4) => lower-case()  Doing this is super janky and it comes in as two results but I get B and ond.
+
+	d. Now, if you could apply the substring() to isolate letters 2 to the end, you should be able to change it to return only the very first letter. (This time, we do not want to apply the lower-case function, because we want to preserve the upper case of the first letter.) Try it and record your expression.
+
+		- substring(//sp[contains(string(), "Iraq")]/spk,1, 1)
+
+	e. One last challenge. If we can isolate part of the speakers' names to lower-case the 2nd letter to the end, we should be able to connect the first (capital) letter to the rest of the lower-cased letters. For this we want to use the XPath concat() function, and there is a convenient shorthand for it in XPath 3.1 which sets two vertical bars || between the expressions you want to connect. However, we need to be careful because concatenation requires joining exactly one thing to exactly one other thing. (XPath can't figure out on its own how to concat (or tie together) the whole sequence of substrings of the first letter to the whole sequence of the substrings of the rest.) To help XPath to work one at a time over sequences of spk substrings, look up the for $i in (sequence) return ... XPath sequence. (This is a for-loop in XPath, and $i is known as a range variable that isolates each member of the series, one by one.) With the for-loop, you can go one step at a time through the series of //spk nodes and return a concatenation of the substring functions you figured out, using $i as the first argument of your substring functions. See if you can work out how to write this XPath.
+
+		- substring(//sp[contains(string(), "Iraq")]/spk,1, 1) || substring(//sp[contains(string(), "Iraq")]/spk,2, 4) => lower-case() Using the same janky expression from 3c but with the || it comes in as a result of Bond
+

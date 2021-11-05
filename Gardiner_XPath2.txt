@@ -1,0 +1,52 @@
+
+Joey Gardiner
+
+XPath Exercise 2
+
+1. What XPath returns all the values of the @type attribute on the <occupation> elements?
+
+		- //occupation[@type] gives you all the values @type uses. 
+
+2. Let's see if we can read that list of occupation @type values without duplicates. Apply the distinct-values() function to your XPath, and record your expression.
+
+		- distinct-values(//occupation/@type) narrows down the results to only 15 different values.
+
+3. Now let’s chain two functions together! How can you return a count() of those distinct-values()? Record your XPath expression.
+
+		- count(distinct-values(//occupation/@type))
+
+4. We can write XPath to identify people (pull records of <person> elements) based on their nested <occupation> elements and the attributes marked on those elements. You will need to write XPath expressions with predicates, and sometimes nested predicates to answer the following questions:
+
+	a. Let’s first find all the occupations marked with the attribute name-value pair: type="artist". Write an XPath expression that returns all the <occupation 	   type="artist">.
+
+		- //occupation[@type="artist"]
+
+	b. Now, let’s find the full listings of the artists themselves: How would you return the <person> elements that contain nested <occupation type="artist"> markup?
+
+		- //person[occupation[@type="artist"]] 
+
+	c. Who are the women artists listed in our site index? The @sex attribute on the <person> records "m", "f", or "u" recording conventional gender associations of the 	   nineteenth century for male, female, or undetermined. Write an XPath expression that returns <person> elements when the @sex value is "f" and the nested  	   <occupation> is the @type value of "artist".
+
+		- //person[@sex="f"][occupation[@type="artist"]]
+
+	d. The @subtype attribute on the <occupation> element holds more specific occupation information. Write an XPath expression that finds all of the <person> elements 	           with an occupation @subtype of "engraver".
+
+		- //person[occupation[@subtype="engraver"]]
+
+	e. Study how the birth and death dates are stored in the person entries. Sometimes when the specific birth or death date is unknown, we have simply encoded a year 	   value. Build on your previous XPath expression to locate the one person in the site index who was an engraver born in the year 1787. Who was it?
+	
+		- //person[occupation[@subtype="engraver"]][birth[@when="1787"]]  This gave me "Fiden_Wm" and in the nest I found his full name to be William Finden.
+
+	f. What XPath would return the birth dates of all the persons with occupation @subtype of "engraver" in the file?
+
+		- //person[occupation[@subtype="engraver"]]/birth gives you all of the engravers birthdates. 
+
+	g. Use the simple map ! operator to return the string value of the birth dates you located. Now, send all those dates through the XPath sort() function to sort them    	   from earliest to latest. And let's add one more function to the chain: What happens when you add min() to the end? What is the earliest year in which an engraver 	   listed in our file was born?
+
+		- //person[occupation[@subtype="engraver"]]/sort(birth) is the path I used. The earliest birthday is 1752-08-11. When I added min() to the end, so this 			  //person[occupation[@subtype="engraver"]]/sort(birth)min() , I got an error reading "XPath failed due to: Unexpected token "<function>(" beyond end of 		  expression" I thought this might be because I put it in the wrong spot so I moved it to different spots like in the sort expression and on the left of it, 		  those resulted in errors as well. 
+
+5. Explain why the following two XPath expressions return different results. Run each XPath expression, review the results, and explain what you think each expression is returning.
+//person/occupation[1]
+(//person/occupation)[1]
+
+		- The first expression is returning every person element with the first instance of occupation in that person element. The second expression is returning just the very first person parent and occupation child structure. 
