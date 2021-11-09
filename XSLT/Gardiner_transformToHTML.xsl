@@ -7,6 +7,13 @@
     <xsl:output method="xhtml" html-version="5" omit-xml-declaration="yes" 
         include-content-type="no" indent="yes"/>
     
-    
+    <xsl:template match="/">
+        
+        <html>
+            <ol>
+                <xsl:apply-templates/>
+            </ol>
+        </html>
+    </xsl:template>    
     
 </xsl:stylesheet>
