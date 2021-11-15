@@ -1,0 +1,31 @@
+
+body {
+background-color: #daedf1;
+color: #1b4166;
+font-family: arial, helvetica, sans-serif;
+margin-top: 40px;
+margin-left: 100px;
+margin-right: 60px;
+margin-bottom: 40px;
+}
+
+
+/*  section.stanza {
+    list-style-type:decimal;
+}
+*/
+
+ol{
+    list-style-type: none;
+}
+
+section.stanza {
+list-style-type: none;
+counter-reset: css-counter 0;
+
+}
+
+section.stanza li
+{counter-increment: css-counter 1;}
+
+section.stanza li:before {content: counter(css-counter) ". ";}
