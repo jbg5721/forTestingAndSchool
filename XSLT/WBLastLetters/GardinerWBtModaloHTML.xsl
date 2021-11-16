@@ -7,9 +7,6 @@
     
     <xsl:variable name="WBColl" select="collection('XML/?select=*.xml')"/>   
     
-    <!--This is a starter file for modal XSLT processing. The @mode attribute in XSLT lets you
-    process the same node in multiple ways! -->
-    
     <xsl:template match="/">
         <html>
             <head>
@@ -24,7 +21,8 @@
                     <ul>
                         <xsl:apply-templates select="$WBColl//xml" mode="toc"/>   
                     </ul>
-                </section>
+                </section> 
+                <br/>
                 <section id="fulltext">
                     <xsl:apply-templates select="$WBColl//xml"/>
                 </section>
@@ -35,18 +33,33 @@
     
     <!--Templates in toc mode for the table of contents -->
     <xsl:template match="xml" mode="toc">
-       <!-- develop -->  
-    
+        <li><xsl:apply-templates select="descendant::title" /></li>
+
     </xsl:template>
     
 
     
     <!--Normal templates for fulltext view -->
     <xsl:template match="xml">
-       
-        <!-- develop -->  
+        <h2><xsl:apply-templates select="descendant::title" /></h2>
+        <br/>
+         <div class="header"><xsl:apply-templates select="descendant::header"/></div>
+         <p><xsl:apply-templates select="descendant::p"/></p>
+        <div class="closer"><xsl:apply-templates select="descendant::closer"/></div>
+        
     </xsl:template>
-    
+    <xsl:template match="header">       
+        <div class="date"><xsl:apply-templates select="child::date"/></div>
+        <div class="greeting"><xsl:apply-templates select="child::greeting"/></div>
+    </xsl:template>
+    <xsl:template match="p">
+        <xsl:apply-templates/>
+         <br/>
+    </xsl:template>
+    <xsl:template match="ln">
+        <br/><span class="n"><xsl:value-of select="count(preceding::ln)+1"/></span>.
+    </xsl:template>
+    <xsl:template match="title"><xsl:apply-templates/></xsl:template>
   
     
 </xsl:stylesheet>
