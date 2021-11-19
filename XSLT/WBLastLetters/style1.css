@@ -1,0 +1,30 @@
+
+body {
+background-color: #daedf1;
+color: #1b4166;
+font-family: arial, helvetica, sans-serif;
+margin-top: 40px;
+margin-left: 100px;
+margin-right: 60px;
+margin-bottom: 40px;
+}
+
+
+/*  section.stanza {
+    list-style-type:decimal;
+}
+*/
+
+img {
+  max-width: 35%;
+  height: auto;
+}
+
+div.letter {
+    margin-left: 500px;
+    display:block;
+}
+
+div.img {
+display:block; text-align:left;
+}

@@ -12,6 +12,7 @@
             <head>
                 <title>Warren Behrend’s Last Correspondence and Memorial</title>
                 <link rel="stylesheet" type="text/css" href="style.css"/>
+                <style type="text/css"> </style>
             </head>
             <body>
                 <h1>Warren Behrend’s Last Correspondence and Memorial</h1>
@@ -47,11 +48,11 @@
     
     <!--Normal templates for fulltext view -->
     <xsl:template match="xml">
-        <h2 id="{descendant::title/@xml:id}"><xsl:apply-templates select="descendant::title" /></h2>
+        <a href="#{descendant::h1}"><h2 id="{descendant::title/@xml:id}"><xsl:apply-templates select="descendant::title" /></h2></a>
         <br/>
-         <div class="header"><xsl:apply-templates select="descendant::header"/></div>
+        <div class="letter" > <div class="header"><xsl:apply-templates select="descendant::header"/></div>
          <p><xsl:apply-templates select="descendant::p"/></p>
-        <div class="closer"><xsl:apply-templates select="descendant::closer"/></div>
+        <div class="closer"><xsl:apply-templates select="descendant::closer"/></div></div>
         
     </xsl:template>
     <xsl:template match="header">       
