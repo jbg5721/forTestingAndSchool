@@ -1,0 +1,31 @@
+
+body {
+background-color: #daedf1;
+color: #1b4166;
+font-family: arial, helvetica, sans-serif;
+margin-top: 40px;
+margin-left: 100px;
+margin-right: 60px;
+margin-bottom: 40px;
+}
+
+
+span.event {
+    /*  font-family: copperplate, papyrus; */
+    font-weight:600;
+}
+
+span.item {
+    color:#02a115;
+}
+span.char {
+    
+    font-style:italic;
+}
+span.soCalled {
+    text-decoration:underline;
+}
+span.place {
+    /* outline-style: groove; */
+    color:#cb9409;
+}
