@@ -29,3 +29,27 @@ span.place {
     /* outline-style: groove; */
     color:#cb9409;
 }
+
+span.MythicDawn {
+    color: lightgrey;
+    background-color:black;
+}
+
+span.daedra {
+    
+    background-color:black;
+    color: lightgrey;
+}
+
+span.empire {
+    
+    background-color:white;
+}
+span.blades {
+    
+    background-color:white;
+}
+span.DarkBrotherhood {
+    color: white;
+    background-color:grey;
+}

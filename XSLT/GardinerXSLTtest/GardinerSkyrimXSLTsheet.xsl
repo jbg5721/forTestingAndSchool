@@ -5,6 +5,7 @@
     <xsl:output method="xhtml" html-version="5" omit-xml-declaration="yes" 
         include-content-type="no" indent="yes"/>
     
+    <!-- <xsl:variable name="Faction" select="distinct-values(faction/@ref)"/> --> 
     <xsl:template match="/">
         <html>
             <head>
@@ -13,9 +14,9 @@
                 <style type="text/css"> </style>
             </head>
             <body>
-                   <h1>The Oblivion Crisis</h1>
-                   <xsl:apply-templates select="descendant::para"/>
-                
+                <h1>The Oblivion Crisis</h1>
+                <xsl:apply-templates select="descendant::para"/>
+                    
             </body>
         </html>
     </xsl:template>
@@ -38,25 +39,40 @@
         <span class="place"><xsl:apply-templates/></span>
     </xsl:template>
     
-    <xsl:template match="faction[@ref='MythicDawn']">
-        <span class="{@ref}">
+
+    <xsl:template match="faction">
+  
+        <xsl:apply-templates select="//faction[@id=current()/@ref]"/>
+        
+         <span class="{@ref}"> <!-- jbg: if this @ref is changed to a @align, the other random span element that shows up next to the faction span elements in the html will become an @align. I can't really tell if I've gotten far and at this point I just want to figure out how to complete this puzzle.-->
+             <xsl:apply-templates/>
+         </span>
+        
+        
+    </xsl:template>
+    
+    
+    
+    <!--
+        This comment section is dedicated to the pieces that didn't quite fit
+        <xsl:for-each select="faction/@ref">
+                <xsl:value-of select="current()"/>
+                <
+            </xsl:for-each> 
             
-            <xsl:apply-templates/>
-        </span>
-    </xsl:template>
-    <xsl:template match="faction[@ref='blades']">
-        <span class="blades"><xsl:apply-templates/></span>
-    </xsl:template>
-    <xsl:template match="faction[@ref='daedra']">
-        <span class="daedra"><xsl:apply-templates/></span>
-    </xsl:template>
-    <xsl:template match="faction[@ref='empire']">
-        <span class="empire"><xsl:apply-templates/></span>
-    </xsl:template>
-    <xsl:template match="faction[@ref='DarkBrotherhood']">
-        <span class="DarkBotherbood"><xsl:apply-templates/></span>
-    </xsl:template>
+            
+    span class="{@ref}"> </span>
     
-    
+       
+        <xsl:for-each select="faction/@ref">                    
+            <span>
+                <xsl:value-of select="faction/@id"/>
+                <xsl:apply-templates />
+            </span>
+        </xsl:for-each>
+        
+        
+        
+    -->
     
 </xsl:stylesheet>
