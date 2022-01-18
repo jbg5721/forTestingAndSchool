@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xml>
+    <title> Buffalo Chicken Wing Sauce</title>
+
+    <p>If you know someone from Buffalo, they know someone who told them the secret ingredients to
+        the Anchor Bar's famous Buffalo chicken wings. I know people from Buffalo. This is my
+        version, as described to me many years ago, over almost as many beers.</p>
+
+
+    <author>By <per name="John">Chef John</per></author>
+
+    <section sec="ingredients">
+        <head>Ingredients</head>
+
+        <servings>Original recipe yields <serves>8 servings</serves></servings>
+        <head>Ingredient Checklist</head>
+        <ln n="1"><measure>⅔ cup</measure>
+            <ing>hot pepper sauce</ing> (such as Frank's RedHot®)</ln>
+        <ln n="2">
+            <measure>½ cup</measure>
+            <ing>cold unsalted butter</ing>
+        </ln>
+        <ln n="3">
+            <measure>1 ½ tablespoons</measure>
+            <ing>white vinegar</ing>
+        </ln>
+        <ln n="4">
+            <measure>¼ teaspoon</measure>
+            <ing>Worcestershire sauce</ing>
+        </ln>
+        <ln n="5">
+            <measure>¼ teaspoon</measure>
+            <ing>cayenne pepper</ing>
+        </ln>
+        <ln n="6">
+            <measure>⅛ teaspoon</measure>
+            <ing>garlic powder</ing>
+        </ln>
+        <ln n="7"><ing>salt</ing> to taste</ln>
+    </section>
+
+
+    <section sec="directions">
+        <head>Directions</head>
+        <p>Step 1</p>
+        <p>Combine the <ing>hot sauce</ing>, <ing>butter</ing>, <ing>vinegar</ing>,
+                <ing>Worcestershire sauce</ing>, <ing>cayenne pepper</ing>, <ing>garlic
+            powder</ing>, and <ing>salt</ing> in a pot and place over <temp>medium heat</temp>.
+            Bring to a simmer while stirring with a whisk. As soon as the liquid begins to bubble on
+            the sides of the pot, remove from heat, stir with the whisk, and set aside for use.</p>
+    </section>
+</xml>
