@@ -12,5 +12,5 @@ Using `(<movie>)(.+?)\t` as the find and using `\1<title>\2</title>` as the repl
 
 Find `(</title>)(.+?)\t` and replace with `\1<year>\2</year>` to add year tag.
 Find `(</year>)(.+?)\t` and replace with `\1<country>\2</country>` to add country tag.
-It differs slightly when trying to add the runtime tags. I used find as `(</country>)(.+?)(</movie)` and replace with `\1<runtime>\2</runtime>\3` to add runtime tag.
+It differs slightly when trying to add the runtime tags. I used find as `(</country>)(.+?)(</movie>)` and replace with `\1<runtime>\2</runtime>\3` to add runtime tag.
 
