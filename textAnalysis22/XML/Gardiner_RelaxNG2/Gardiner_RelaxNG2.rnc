@@ -1,0 +1,27 @@
+start = root
+root = element xml {metadata,(stage| sp)*}
+metadata = element metadata {title, broadcastInfo, author+, composer, director, scriptSource, audio, voices, roles}
+stage = element stage {(type, n)?, text}
+sp = element sp {n, mixed{(speaker | actor | stage)*}}
+
+title = element title {media, text}
+broadcastInfo = element broadcastInfo {text, date}
+author = element author {media, text}
+composer = element composer {media, text}
+director = element director {text}
+scriptSource = element scriptSource {text}
+audio = element audio {text}
+voices = element voices {actor*}
+roles = element roles {character*}
+
+date = element date {when, text}
+actor = element actor {text}
+character = element character {gender, text}
+speaker = element speaker {text}
+
+
+type = attribute type {"scene"}
+n = attribute n {xsd:integer}
+media = attribute media {"radioscript" | "novel" | "music"}
+gender = attribute gender {"m" | "f"}
+when = attribute when {xsd:date | xsd:gYearMonth | xsd:gYear}
