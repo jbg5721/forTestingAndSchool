@@ -1,0 +1,26 @@
+#jbg: The xml document may need to be redone or reworked. It is missing a lot of key information and needs more tags. This is just a start.
+
+start = xml
+xml = element xml {metadata, introScroll, mixed{(setting | speaker)*}}
+metadata = element metadata {title, release, director, scriptSource, talent, roles}
+introScroll = element introScroll {text}
+setting = element setting {where?, text}
+speaker = element speaker {text}
+
+title = element title {media, text}
+release = element release {text, date}
+director = element director {text}
+scriptSource = element scriptSource {text}
+talent = element talent {actor+}
+roles = element roles { character+}
+
+date = element date {when, text}
+actor = element actor {text}
+character = element character {alignment, text}
+
+
+where = attribute where {"inside" | "outside"}
+media = attribute media {"movie"}
+alignment = attribute alignment {"good" | "bad"}
+when = attribute when {xsd:date | xsd:gYearMonth | xsd:gYear}
+
