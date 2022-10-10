@@ -52,5 +52,25 @@ Pay attention while downloading Ant Contrib, it is downloaded here: https://sour
 - And one for Java called `%JAVA_HOME%\bin`. Click Ok and you can close the Environment Variables window.
 
 ## WSL
+### The Install Process
+- Open either Windows Command Shell or PowerShell as an **Administrator** 
+- Run the command `wsl --install`. This will install Ubuntu
+- Once the install is complete you will have to restart your computer to run Ubuntu.
+- You will be prompted to create a username and password for WSL, do this and remember it.
+- Additional information: https://learn.microsoft.com/en-us/windows/wsl/install
 
+### Configuring 
+- WSL creates its own file system so you will need to configure java in this environment as well. 
+- You can check if java is there using `java -version` but it most likely isn't.
+- Run this to install Java JDK: `sudo apt install default-jdk`
+- If you run the `java -version` command again you should be returned with the java version that is now installed.
+
+**Finding Javas file path**
+
+- You can use `cd` and `ls` commands to search for your Java installation.
+- Remember this file path as you will want to use it later.
+
+**Finding your Ant installation from Linux**
+- You will want to start your file path search with `/mnt/c/`. This will jump into your C: drive on your windows computer. You can look to where you installed Ant from here.
+- Additional information about working across Windows and Linux: https://learn.microsoft.com/en-us/windows/wsl/filesystems
 
