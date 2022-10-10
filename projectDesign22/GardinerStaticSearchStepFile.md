@@ -72,5 +72,14 @@ Pay attention while downloading Ant Contrib, it is downloaded here: https://sour
 
 **Finding your Ant installation from Linux**
 - You will want to start your file path search with `/mnt/c/`. This will jump into your C: drive on your windows computer. You can look to where you installed Ant from here.
+- Remember your ant file path.
 - Additional information about working across Windows and Linux: https://learn.microsoft.com/en-us/windows/wsl/filesystems
+
+### Setting Environment Variables inside WSL
+This will be similar to the Environment Variables that you set in Windows but you will be editing it in the Ubuntu command line.
+- Enter this command to edit your environmental variables: `sudo nano /etc/environment`
+- You will want to set `JAVA_HOME` and `ANT_HOME`. 
+- For `JAVA_HOME` you will use Java JDK that you installed in Ubuntu. What you enter will look similar to this:
+```java file path in Ubuntu```
+
 
