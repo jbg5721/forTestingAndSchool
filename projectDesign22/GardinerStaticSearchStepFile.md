@@ -15,6 +15,10 @@ Pay attention while downloading Ant Contrib, it is downloaded here: https://sour
 - Un-zip this download into your designated ant folder. 
 - Look inside of the ant-contrib folder for a `.jar` file, copy this into the `lib/` folder in your designated Ant file path.
 
+### Static Search 
+- You will want to clone the staticSearch github repository to your Github file directory. 
+- Access it here: https://github.com/projectEndings/staticSearch
+
 ## Testing that everything is downloaded
 
 ### Java
@@ -80,6 +84,57 @@ This will be similar to the Environment Variables that you set in Windows but yo
 - Enter this command to edit your environmental variables: `sudo nano /etc/environment`
 - You will want to set `JAVA_HOME` and `ANT_HOME`. 
 - For `JAVA_HOME` you will use Java JDK that you installed in Ubuntu. What you enter will look similar to this:
-```java file path in Ubuntu```
+```
+JAVA_HOME="/usr/lib/java"
+```
+- adding ANT_HOME will be similar, but you will want to use `/mnt/c/` at the begining of the file path. 
+- It should look something like this:
+```
+ANT_HOME="/mnt/c/users/JoeyGardiner/Documents/ant/apache-ant-1.10.12"
+```
+We will want to be able to navigate easily over to our staticSearch repository and run ant. To do this you can create aliases. These will go in the same location as the Environmental Variables. It should look something like this now:
+```
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+JAVA_HOME="/usr/lib/java"
+ANT_HOME="/mnt/c/users/JoeyGardiner/Documents/ant/apache-ant-1.10.12"
 
+alias GitHub="cd /mnt/c/users/JoeyGardiner/Documents/GitHub"
+alias static="cd /mnt/c/users/JoeyGardiner/Documents/GitHub/staticSearch"
+alias ant="$ANT_HOME/bin/ant"
+```
+To save and exit, press `F3` and then `Enter`, this saves. To exit press `Control` and `x` at the same time.
+Now you are back at the command line, you will need to refresh. 
+- Enter: `source /etc/environment` to refresh.
 
+**Testing it**
+- Navigate to your staticSearch repo, and run: `ant`
+- If this runs and builds without error you can view the results in the `/test` directory on one of the HTML pages. 
+
+## If you have a space in your user file name
+My user file path actually looks like this: `/mnt/c/users/Joey Gardiner/Documents/GitHub/staticSearch` I excluded the space because the previosus steps work when there are no space characters. If there is a space character this is what you will have to do. 
+- In Ubuntu you will have to install ant and ant-contrib. This is simple, just run: `sudo apt install ant` and then `sudo apt install ant-contrib`. 
+- Using `cd` and `ls` find out where ant was installed. It is most likely in `/usr/share`
+- Update your Environmental Variables, It should look something like this: `ANT_HOME="/usr/share/ant"`
+- Save this using `F3` then `Enter` and exit using `Control` and `x`.
+
+### Cloning staticSearch repo into Ubuntu
+
+- You will want to clone the staticSearch repo where you want, I think the easiest place to access it is in home. Enter `cd ` to get there. 
+- Then clone the repo here using: `git clone repoAddress` 
+- Access the GitHub repository: https://github.com/projectEndings/staticSearch
+- Additional Information about Git in Ubuntu: https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-git
+
+### Final Test
+
+- Time to see if everything is in place
+- Navigate to your staticSearch repo in Ubuntu.
+- Run the `ant` command to start a Build and wait for it to finish. 
+- It should read **BUILD SUCCESSFUL** at the end.
+
+### Running the test site from Ubuntu
+- Navigate into the `/test` folder from staticSearch.
+- Try running: `python -m http.server 8000` This will start up a local server. If it does not recognize python as a command but mentions `python3` try running this instead: `python3 -m http.server 8000`
+- If it works, go to your browser and enter `localhost:8000`
+
+At this point you are working entirely in Ubuntu and you have a successful test staticSearch system. Try searching for a few things and see what you get back.
+- To stop running the server you can just close the Ubuntu Shell window.
